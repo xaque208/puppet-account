@@ -46,9 +46,9 @@ define account::user (
     $homedir = $home
   } else {
     $homedir = $::kernel ? {
-      Darwin  => "/Users/${name}",
-      'SunOS' => "/export/home/${name}",
-      default => "/home/${name}",
+      'Darwin' => "/Users/${name}",
+      'SunOS'  => "/export/home/${name}",
+      default  => "/home/${name}",
     }
   }
 
