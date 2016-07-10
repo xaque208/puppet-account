@@ -5,10 +5,11 @@
 # @param ensure To add or remove the account from the system
 # @param shell Set the users shell if desired
 # @param home Set the home if defaults are unsatisfactory
+# @param manage_home Boolean to enable manageing the home directory
 # @param group Set the primary group of the user
 # @param uid Set the uid of the account if desired
 # @param realizekeys Boolean to realize virtual 'ssh_authorized_key' resources
-# @param purgekeys Boolean to enablee purging unmanaged ssh keys
+# @param purgekeys Boolean to enable purging unmanaged ssh keys
 # @param comment The comment for the user resource
 # @param hushlogin Boolean to disable motd etc upon login
 #
@@ -21,6 +22,7 @@ define account::user (
   $ensure              = present,
   $shell               = '/bin/bash',
   $home                = undef,
+  Boolean $manage_home = true,
   $group               = undef,
   $uid                 = undef,
   Boolean $realizekeys = true,
@@ -73,10 +75,13 @@ define account::user (
   # Only if we are ensuring a user is present
   if $ensure == present {
     File { owner => $name, group => $groupname }
-    file { $homedir:
-      ensure  => directory,
-      mode    => '0700',
-      require => User[$name],
+
+    if $manage_home {
+      file { $homedir:
+        ensure  => directory,
+        mode    => '0700',
+        require => User[$name],
+      }
     }
 
     if $realizekeys {
