@@ -1,6 +1,6 @@
 {
   "name": "zleslie-account",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "author": "zleslie",
   "summary": "A simple module for managing user and group accounts",
   "license": "Apache-2.0",
