@@ -516,6 +516,10 @@ RSpec/NamedSubject:
 RSpec/RepeatedDescription:
   Enabled: False
 
+# disabled for simpler testing on multiple platforms in case statement
+RSpec/RepeatedExample:
+  Enabled: False
+
 RSpec/NestedGroups:
   Enabled: False
 
