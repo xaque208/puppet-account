@@ -90,8 +90,13 @@ begin
 rescue LoadError
 end
 
-Blacksmith::RakeTask.new do |t|
-  t.tag_pattern = "%s" # Use a custom pattern with git tag. %s is replaced with the version number.
+begin
+  Blacksmith::RakeTask.new do |t|
+    t.tag_message_pattern = "Version %s"
+    t.tag_pattern = "%s"
+  end
+rescue
 end
+
 
 # vim: syntax=ruby
