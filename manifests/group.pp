@@ -18,7 +18,6 @@ define account::group (
   Boolean $exclusive = true,
   $gid               = undef,
 ) {
-
   realize(Account::User[$members])
 
   group { $name:
