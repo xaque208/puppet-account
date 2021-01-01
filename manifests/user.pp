@@ -30,7 +30,6 @@ define account::user (
   $comment             = undef,
   Boolean $hushlogin   = false,
 ) {
-
   if $uid {
     $userid = $uid
   } else {
@@ -56,7 +55,7 @@ define account::user (
 
   if $hushlogin {
     file { "${homedir}/.hushlogin":
-      ensure  => present,
+      ensure  => file,
       require => User[$name],
     }
   }
